@@ -1,22 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./download.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [showLogo, setShowLogo] = useState(0);
+
+  useEffect(() => {
+    if (showLogo === 1) {
+      setTimeout(() => {
+        setShowLogo(2);
+      }, 900);
+    }
+  }, [showLogo]);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {showLogo === 2 ? (
+          <img
+            src={logo}
+            alt="logo"
+            className={`App-logo ${showLogo === 2 ? "" : "fadeIn"}`}
+          />
+        ) : (
+          <p
+            onClick={() => setShowLogo(1)}
+            className={`App-link ${showLogo === 0 ? "" : "fade"}`}
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            بسم الله
+          </p>
+        )}
       </header>
     </div>
   );
